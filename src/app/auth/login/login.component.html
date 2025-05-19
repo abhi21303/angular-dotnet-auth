@@ -1,0 +1,28 @@
+<p-card header="Login" styleClass="w-full max-w-md mx-auto mt-10 shadow-md p-6">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+
+        <div class="flex flex-col gap-1">
+            <label for="email" class="text-gray-700">Email</label>
+            <input pInputText id="email" formControlName="email" class="w-full border rounded-md px-3 py-2" />
+            <p-message *ngIf="submitted && f['email'].errors?.['required']" severity="error"
+                text="Email is required"></p-message>
+            <p-message *ngIf="submitted && f['email'].errors?.['email']" severity="error"
+                text="Invalid email format"></p-message>
+        </div>
+
+        <div class="flex flex-col gap-1">
+            <label for="password" class="text-gray-700">Password</label>
+            <p-password formControlName="password" [feedback]="false" toggleMask styleClass="w-full"
+                inputStyleClass="w-full px-3 py-2 border rounded-md">
+            </p-password>
+            <p-message *ngIf="submitted && f['password'].errors?.['required']" severity="error"
+                text="Password is required"></p-message>
+            <p-message *ngIf="submitted && f['password'].errors?.['minlength']" severity="error"
+                text="Minimum 6 characters"></p-message>
+        </div>
+
+        <button pButton label="Login" type="submit"
+            class="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 rounded-md">
+        </button>
+    </form>
+</p-card>

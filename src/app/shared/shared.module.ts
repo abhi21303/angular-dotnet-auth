@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
+import { FloatLabel } from 'primeng/floatlabel';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [],
@@ -15,7 +17,9 @@ import { CardModule } from 'primeng/card';
     InputTextModule,
     PasswordModule,
     ToastModule,
-    CardModule
+    CardModule,
+    FloatLabel,
+    MessageModule
   ],
   exports:[
     CommonModule,
@@ -23,7 +27,9 @@ import { CardModule } from 'primeng/card';
     InputTextModule,
     PasswordModule,
     ToastModule,
-    CardModule
+    CardModule,
+    FloatLabel,
+    MessageModule
   ]
 })
 export class SharedModule { 
