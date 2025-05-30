@@ -1,28 +1,65 @@
-<p-card header="Login" styleClass="w-full max-w-md mx-auto mt-10 shadow-md p-6">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+<div class="flex min-h-screen">
+  <!-- Left side - Image -->
+  <div class="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 p-10">
+    <img src="assets/login-illustration.png" alt="Login Illustration" class="max-w-full h-auto">
+  </div>
 
-        <div class="flex flex-col gap-1">
-            <label for="email" class="text-gray-700">Email</label>
-            <input pInputText id="email" formControlName="email" class="w-full border rounded-md px-3 py-2" />
-            <p-message *ngIf="submitted && f['email'].errors?.['required']" severity="error"
-                text="Email is required"></p-message>
-            <p-message *ngIf="submitted && f['email'].errors?.['email']" severity="error"
-                text="Invalid email format"></p-message>
+  <!-- Right side - Form -->
+  <div class="flex w-full md:w-1/2 items-center justify-center bg-white p-8">
+    <div class="w-full max-w-md">
+      <div class="mb-10">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Holla, Welcome Back</h1>
+        <p class="text-gray-600">Hey, welcome back to your special place</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Email -->
+        <div>
+          <input 
+            pInputText 
+            type="email" 
+            id="email" 
+            placeholder="example@gmail.com" 
+            formControlName="email" 
+            class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          />
         </div>
 
-        <div class="flex flex-col gap-1">
-            <label for="password" class="text-gray-700">Password</label>
-            <p-password formControlName="password" [feedback]="false" toggleMask styleClass="w-full"
-                inputStyleClass="w-full px-3 py-2 border rounded-md">
-            </p-password>
-            <p-message *ngIf="submitted && f['password'].errors?.['required']" severity="error"
-                text="Password is required"></p-message>
-            <p-message *ngIf="submitted && f['password'].errors?.['minlength']" severity="error"
-                text="Minimum 6 characters"></p-message>
+        <!-- Password -->
+        <div>
+          <p-password 
+            formControlName="password" 
+            [feedback]="false" 
+            placeholder="••••••••••" 
+            toggleMask 
+            styleClass="w-full"
+            inputStyleClass="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+          ></p-password>
         </div>
 
-        <button pButton label="Login" type="submit"
-            class="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 rounded-md">
-        </button>
-    </form>
-</p-card>
+        <!-- Remember + Forgot Password -->
+        <div class="flex justify-between items-center text-sm">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="form-checkbox text-purple-600" />
+            <span class="text-gray-700">Remember me</span>
+          </label>
+          <a href="#" class="text-purple-600 hover:underline">Forgot Password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button 
+          pButton 
+          type="submit" 
+          label="Sign In" 
+          class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-md transition"
+        ></button>
+
+        <!-- Sign up -->
+        <p class="text-center text-sm text-gray-600">
+          Don’t have an account?
+          <a href="#" class="text-purple-600 font-medium hover:underline">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

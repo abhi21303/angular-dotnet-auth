@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { provideRouter, Router } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit{
   loginForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -33,14 +35,14 @@ export class LoginComponent implements OnInit{
     if (this.loginForm.invalid) {
       return;
     }
-
-    // Example login logic
-    const { email, password } = this.loginForm.value;
-    if (email === 'admin@example.com' && password === 'password') {
-      localStorage.setItem('authToken', 'dummy-token');
-      this.router.navigate(['/dashboard']);
-    } else {
-      alert('Invalid credentials');
-    }
+    this.apiService.Login(this.loginForm.value).subscribe({
+        next: (res) => {
+          localStorage.setItem('authToken', res.token);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          alert('Login failed. Please check your credentials.');
+        }
+    });
   }
 }
